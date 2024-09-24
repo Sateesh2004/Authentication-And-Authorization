@@ -75,8 +75,25 @@ const signin = async (req, res) => {
 };
 
 
+const logout = async (req, res) => {
+    // Clear the JWT cookie
+    console.log("delet token")
+    res.cookie("jwt","", {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',  
+        sameSite: "strict",
+        path: '/', 
+      });
+  
+    // Redirect to the sign-in page
+    
+    return res.status(201).json({ message: "Out" });
+  };
+  
 
 
 
 
-export { registerUser, signin };
+
+
+export { registerUser, signin,logout };
